@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { Send, MessageCircle, Mail, MapPin } from "lucide-react";
 import { toast } from "sonner";
+import { WHATSAPP_URL } from "@/config/contact";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ export function Contact() {
   };
 
   const handleWhatsApp = () => {
-    window.open("https://wa.me/5491123456789", "_blank");
+    window.open(WHATSAPP_URL, "_blank");
   };
 
   return (

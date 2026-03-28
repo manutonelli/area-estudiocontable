@@ -19,7 +19,7 @@ export function Midpoint() {
   return (
     <section
       id="servicios"
-      className="py-32 bg-[#2E3A4D] relative overflow-hidden"
+      className="py-32 bg-[#2E3A4D] relative overflow-hidden scroll-mt-28"
     >
       {/* Background blobs */}
       <div className="absolute inset-0 pointer-events-none">

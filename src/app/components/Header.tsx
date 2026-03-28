@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { Link, useLocation, useNavigate } from "react-router";
 import { Menu, X } from "lucide-react";
 import logoArea from "@/assets/logo-area.png";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);
@@ -13,10 +16,27 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    setIsMobileMenuOpen(false);
+  const closeMobile = () => setIsMobileMenuOpen(false);
+
+  const goHome = () => {
+    closeMobile();
+    if (location.pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      navigate("/");
+    }
   };
+
+  const scrollToSection = (id: string) => {
+    closeMobile();
+    if (location.pathname === "/") {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate({ pathname: "/", hash: id });
+    }
+  };
+
+  const navMuted = isScrolled ? "text-[#2E3A4D]" : "text-white";
 
   return (
     <motion.header
@@ -31,9 +51,9 @@ export function Header() {
     >
       <div className="mx-auto max-w-7xl px-8 md:px-16">
         <div className="flex items-center justify-between py-5">
-          {/* Logo */}
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            type="button"
+            onClick={goHome}
             className="flex items-center"
             aria-label="AREA Estudio Contable — inicio"
           >
@@ -46,25 +66,36 @@ export function Header() {
             />
           </button>
 
-          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-10">
             <button
+              type="button"
               onClick={() => scrollToSection("quienes-somos")}
-              className={`text-sm transition-colors duration-300 hover:opacity-60 ${
-                isScrolled ? "text-[#2E3A4D]" : "text-white"
-              }`}
+              className={`text-sm transition-colors duration-300 hover:opacity-60 ${navMuted}`}
             >
               Quiénes somos
             </button>
             <button
+              type="button"
+              onClick={() => scrollToSection("servicios")}
+              className={`text-sm transition-colors duration-300 hover:opacity-60 ${navMuted}`}
+            >
+              Servicios
+            </button>
+            <Link
+              to="/recursos-gratuitos"
+              className={`text-sm transition-colors duration-300 hover:opacity-60 ${navMuted}`}
+            >
+              Recursos
+            </Link>
+            <button
+              type="button"
               onClick={() => scrollToSection("faq")}
-              className={`text-sm transition-colors duration-300 hover:opacity-60 ${
-                isScrolled ? "text-[#2E3A4D]" : "text-white"
-              }`}
+              className={`text-sm transition-colors duration-300 hover:opacity-60 ${navMuted}`}
             >
               FAQ
             </button>
             <motion.button
+              type="button"
               onClick={() => scrollToSection("contacto")}
               className={`text-sm px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
                 isScrolled
@@ -78,12 +109,14 @@ export function Header() {
             </motion.button>
           </nav>
 
-          {/* Mobile toggle */}
           <button
+            type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={`md:hidden transition-colors duration-300 ${
               isScrolled ? "text-[#2E3A4D]" : "text-white"
             }`}
+            aria-expanded={isMobileMenuOpen}
+            aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />
@@ -93,7 +126,6 @@ export function Header() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.nav
@@ -104,18 +136,35 @@ export function Header() {
             >
               <div className="bg-white rounded-2xl shadow-xl p-6 mb-4 space-y-4">
                 <button
+                  type="button"
                   onClick={() => scrollToSection("quienes-somos")}
                   className="block w-full text-left py-2 text-[#2E3A4D] text-sm"
                 >
                   Quiénes somos
                 </button>
                 <button
+                  type="button"
+                  onClick={() => scrollToSection("servicios")}
+                  className="block w-full text-left py-2 text-[#2E3A4D] text-sm"
+                >
+                  Servicios
+                </button>
+                <Link
+                  to="/recursos-gratuitos"
+                  onClick={closeMobile}
+                  className="block w-full text-left py-2 text-[#2E3A4D] text-sm"
+                >
+                  Recursos
+                </Link>
+                <button
+                  type="button"
                   onClick={() => scrollToSection("faq")}
                   className="block w-full text-left py-2 text-[#2E3A4D] text-sm"
                 >
                   FAQ
                 </button>
                 <button
+                  type="button"
                   onClick={() => scrollToSection("contacto")}
                   className="block w-full text-left py-2 text-[#2E3A4D] text-sm font-semibold"
                 >

@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { Instagram, Linkedin, Mail } from "lucide-react";
 
 export function Footer() {
@@ -5,16 +6,21 @@ export function Footer() {
     <footer className="bg-[#2E3A4D] border-t border-white/10 py-12">
       <div className="mx-auto max-w-7xl px-8 md:px-16">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-          {/* Brand */}
           <div>
-            <button
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="flex items-baseline gap-2 mb-2"
+            <Link
+              to="/"
+              className="flex items-baseline gap-2 mb-2 hover:opacity-90 transition-opacity"
             >
               <span className="text-white text-xl font-bold">AREA</span>
               <span className="text-[#F4F4F4]/40 text-sm">Estudio Contable</span>
-            </button>
+            </Link>
             <p className="text-[#F4F4F4]/40 text-sm">Buenos Aires, Argentina</p>
+            <Link
+              to="/recursos-gratuitos"
+              className="inline-block mt-3 text-sm text-[#F4F4F4]/50 hover:text-white transition-colors"
+            >
+              Recursos gratuitos
+            </Link>
           </div>
 
           {/* Social icons */}

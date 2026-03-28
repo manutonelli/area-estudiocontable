@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { Send } from "lucide-react";
 import { toast } from "sonner";
+import { WHATSAPP_URL } from "@/config/contact";
 
 export function FinalCTA() {
   const [formData, setFormData] = useState({
@@ -145,7 +146,7 @@ export function FinalCTA() {
             <div className="flex flex-col md:flex-row gap-5 md:justify-end items-start md:items-center">
               <span className="text-[#F4F4F4]/20 hidden md:block text-xl">·</span>
               <motion.a
-                href="https://wa.me/5491123456789"
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 bg-white text-[#2E3A4D] px-8 py-4 rounded-full font-semibold text-base hover:bg-[#F4F4F4] transition-all shadow-lg"
