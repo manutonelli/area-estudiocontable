@@ -13,7 +13,7 @@ export function FinalCTA() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("¡Mensaje enviado! Te contactaremos pronto.");
+    toast.success("¡Mensaje enviado! Te contactamos pronto.");
     setFormData({ nombre: "", email: "", consulta: "" });
   };
 
@@ -39,22 +39,11 @@ export function FinalCTA() {
         >
           <circle cx="100" cy="100" r="80" fill="#4F6D7A" />
         </svg>
-        <svg
-          className="absolute top-1/2 right-1/4 w-[200px] h-[200px] opacity-[0.05]"
-          viewBox="0 0 200 200"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill="#4F6D7A"
-            d="M28.4,-45.4C37.9,-42.3,47.4,-36.3,52.9,-27.5C58.4,-18.7,59.9,-7,57.5,3.5C55.1,14,48.9,23.4,41.8,31.9C34.7,40.4,26.8,48,16.9,53.6C7,59.2,-4.9,62.8,-16.1,60.7C-27.3,58.6,-37.9,50.8,-45.5,41C-53.2,31.2,-57.9,19.3,-59.7,6.8C-61.5,-5.7,-60.3,-18.8,-54.9,-29.7C-49.5,-40.6,-39.8,-49.3,-29.1,-52.2C-18.3,-55.1,-6.5,-52.2,3.2,-57.1C12.8,-62.1,18.9,-48.5,28.4,-45.4Z"
-            transform="translate(100 100)"
-          />
-        </svg>
       </div>
 
       <div className="mx-auto max-w-7xl px-8 md:px-16 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Formulario — izquierda en desktop; debajo del texto en móvil */}
+          {/* Formulario */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -75,7 +64,7 @@ export function FinalCTA() {
                   onChange={(e) =>
                     setFormData({ ...formData, nombre: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/35 focus:outline-none focus:ring-2 focus:ring-[#4F6D7A] focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/35 focus:outline-none focus:ring-2 focus:ring-[#63868A] focus:border-transparent transition-all"
                   placeholder="Tu nombre"
                 />
               </div>
@@ -91,7 +80,7 @@ export function FinalCTA() {
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/35 focus:outline-none focus:ring-2 focus:ring-[#4F6D7A] focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/35 focus:outline-none focus:ring-2 focus:ring-[#63868A] focus:border-transparent transition-all"
                   placeholder="tu@email.com"
                 />
               </div>
@@ -107,17 +96,17 @@ export function FinalCTA() {
                   onChange={(e) =>
                     setFormData({ ...formData, consulta: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/35 focus:outline-none focus:ring-2 focus:ring-[#4F6D7A] focus:border-transparent transition-all resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/35 focus:outline-none focus:ring-2 focus:ring-[#63868A] focus:border-transparent transition-all resize-none"
                   placeholder="Contanos qué necesitás..."
                 />
               </div>
               <motion.button
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 bg-[#4F6D7A] text-white px-6 py-3.5 rounded-xl font-semibold hover:bg-[#5a7d8a] transition-colors"
+                className="w-full inline-flex items-center justify-center gap-2 bg-[#63868A] text-white px-6 py-3.5 rounded-xl font-semibold hover:bg-[#4F6D7A] transition-colors"
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
               >
-                Enviar consulta
+                Agendar reunión
                 <Send className="w-4 h-4" />
               </motion.button>
             </form>
@@ -130,21 +119,21 @@ export function FinalCTA() {
             viewport={{ once: true }}
             className="order-1 md:order-2 md:text-right max-w-2xl md:ml-auto"
           >
-            <span className="text-[#4F6D7A] text-xs uppercase tracking-[0.22em] mb-8 block">
+            <span className="text-[#63868A] text-xs uppercase tracking-[0.22em] mb-8 block">
               Contacto
             </span>
 
             <h2 className="text-[clamp(2.2rem,4.5vw,3.8rem)] font-bold text-white leading-[1.1] mb-8">
-              Si querés ordenar tu situación o tenés dudas, podés{" "}
-              <span className="text-[#4F6D7A]">escribirnos.</span>
+              Empezá a trabajar{" "}
+              <span className="text-[#63868A]">con tranquilidad.</span>
             </h2>
 
             <p className="text-[#F4F4F4]/50 text-lg mb-12 leading-relaxed">
-              Te respondemos a la brevedad.
+              Primera consulta sin compromiso. Te escuchamos y analizamos tu
+              situación.
             </p>
 
             <div className="flex flex-col md:flex-row gap-5 md:justify-end items-start md:items-center">
-              <span className="text-[#F4F4F4]/20 hidden md:block text-xl">·</span>
               <motion.a
                 href={WHATSAPP_URL}
                 target="_blank"
@@ -153,7 +142,7 @@ export function FinalCTA() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
-                Escribinos por WhatsApp
+                Escribir por WhatsApp
               </motion.a>
             </div>
           </motion.div>

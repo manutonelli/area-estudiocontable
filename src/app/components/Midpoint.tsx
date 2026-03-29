@@ -1,17 +1,25 @@
 import { motion } from "motion/react";
 
-const services = [
+const servicios = [
   {
-    label: "Monotributo",
-    desc: "Inscripción, recategorización y gestión de tu situación como monotributista.",
+    categoria: "Monotributo",
+    items: ["Alta e inscripción", "Recategorización", "Seguimiento", "Control y asesoramiento"],
   },
   {
-    label: "Relación de dependencia",
-    desc: "Declaración de Ganancias, deducciones y optimización de retenciones.",
+    categoria: "Emprendedores",
+    items: ["Impuestos", "Planificación", "Control mensual", "Asesoramiento"],
   },
   {
-    label: "Freelancers / USD",
-    desc: "Facturación en dólares, régimen simplificado y estrategia impositiva.",
+    categoria: "Autónomos",
+    items: ["Ganancias", "Anticipos", "Proyección fiscal", "Estrategia"],
+  },
+  {
+    categoria: "PYMES",
+    items: ["Impuestos", "Planificación", "Análisis", "Seguimiento", "Decisiones estratégicas"],
+  },
+  {
+    categoria: "Certificaciones",
+    items: ["Certificaciones contables", "Confección de balances"],
   },
 ];
 
@@ -53,35 +61,41 @@ export function Midpoint() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          className="mb-16"
         >
-          <p className="text-[#F4F4F4]/40 text-xs uppercase tracking-[0.25em] mb-8">
-            Nuestros servicios
+          <p className="text-[#63868A] text-xs uppercase tracking-[0.25em] mb-8">
+            Servicios
           </p>
-          <h2 className="text-[clamp(2.8rem,6vw,5rem)] font-bold text-white leading-[1.05] max-w-3xl">
-            ¿En qué te podemos{" "}
-            <em className="not-italic text-[#4F6D7A]">ayudar?</em>
+          <h2 className="text-[clamp(2.4rem,5vw,4rem)] font-bold text-white leading-[1.05] max-w-2xl">
+            ¿En qué podemos{" "}
+            <em className="not-italic text-[#63868A]">ayudarte?</em>
           </h2>
         </motion.div>
 
-        <div className="mt-20 grid md:grid-cols-3 gap-0">
-          {services.map((item, i) => (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-0">
+          {servicios.map((servicio, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.12 }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="border-t border-white/15 pt-8 pb-8 md:pr-10"
+              className="border-t border-white/15 pt-8 pb-8 md:pr-8"
             >
-              <span className="text-[#4F6D7A] text-xs uppercase tracking-widest mb-4 block">
-                0{i + 1}
-              </span>
-              <h3 className="text-white text-xl font-semibold mb-4">
-                {item.label}
+              <h3 className="text-white text-base font-semibold mb-5">
+                {servicio.categoria}
               </h3>
-              <p className="text-[#F4F4F4]/55 leading-relaxed text-base">
-                {item.desc}
-              </p>
+              <ul className="space-y-2">
+                {servicio.items.map((item, j) => (
+                  <li
+                    key={j}
+                    className="text-[#F4F4F4]/50 text-sm leading-relaxed flex items-start gap-2"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-[#63868A] mt-2 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           ))}
         </div>

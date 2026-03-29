@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import heroAreaLocal from "@/assets/hero-area-local.png";
+import { WHATSAPP_URL } from "@/config/contact";
 
 export function Hero() {
   const scrollToContact = () => {
@@ -32,7 +33,6 @@ export function Hero() {
             transform="translate(100 100)"
           />
         </svg>
-        {/* Subtle dot accent */}
         <div className="absolute top-1/3 left-1/2 w-1.5 h-1.5 rounded-full bg-white/20" />
         <div className="absolute top-1/2 left-1/3 w-1 h-1 rounded-full bg-white/15" />
       </div>
@@ -42,36 +42,62 @@ export function Hero() {
           {/* Left — Text */}
           <div>
             <motion.h1
-              className="text-[clamp(2.4rem,5vw,4.2rem)] font-bold text-white leading-[1.08] mb-10"
+              className="text-[clamp(2.4rem,5vw,4rem)] font-bold text-white leading-[1.08] mb-8"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.65 }}
             >
-              Acompañamos a personas y negocios a ordenar su situación contable{" "}
-              <span className="text-[#4F6D7A]">de forma clara y simple.</span>
+              Transformamos tus impuestos en{" "}
+              <span className="text-[#63868A]">decisiones inteligentes.</span>
             </motion.h1>
 
             <motion.p
-              className="text-[#F4F4F4]/60 text-lg md:text-xl mb-12 max-w-md leading-relaxed"
+              className="text-[#F4F4F4]/65 text-lg md:text-xl mb-10 max-w-md leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.85 }}
             >
-              Para freelancers, monotributistas y empleados que quieren entender
-              su situación sin complicaciones.
+              Planificación fiscal, control y acompañamiento para emprendedores,
+              autónomos y PYMES que quieren trabajar con tranquilidad y crecer
+              sin sorpresas.
             </motion.p>
 
-            <motion.button
-              onClick={scrollToContact}
-              className="inline-flex items-center gap-2 bg-white text-[#2E3A4D] px-9 py-4 rounded-full text-base font-semibold hover:bg-[#F4F4F4] transition-all shadow-lg hover:shadow-xl"
+            <motion.div
+              className="flex flex-wrap gap-4 mb-12"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.05 }}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
             >
-              Escribinos
-            </motion.button>
+              <motion.button
+                onClick={scrollToContact}
+                className="inline-flex items-center gap-2 bg-white text-[#2E3A4D] px-8 py-4 rounded-full text-base font-semibold hover:bg-[#F4F4F4] transition-all shadow-lg hover:shadow-xl"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                Agendar reunión
+              </motion.button>
+              <motion.a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-white/40 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-white/10 transition-all"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                WhatsApp
+              </motion.a>
+            </motion.div>
+
+            <motion.p
+              className="text-[#F4F4F4]/40 text-sm leading-relaxed border-l-2 border-[#63868A]/50 pl-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.3 }}
+            >
+              No trabajamos solo con vencimientos.
+              <br />
+              Trabajamos con estrategia, prevención y seguimiento.
+            </motion.p>
           </div>
 
           {/* Right — Organic visual */}
@@ -82,12 +108,10 @@ export function Hero() {
             transition={{ duration: 1.1, delay: 0.7, ease: "easeOut" }}
           >
             <div className="relative w-full max-w-[420px]">
-              {/* Floating accent circles */}
               <div className="absolute -top-4 -left-6 w-5 h-5 rounded-full bg-[#4F6D7A]/50 blur-sm" />
               <div className="absolute -bottom-6 -right-4 w-8 h-8 rounded-full bg-white/10" />
               <div className="absolute top-1/2 -right-8 w-3 h-3 rounded-full bg-[#4F6D7A]/30" />
 
-              {/* Blob image clip */}
               <svg
                 viewBox="0 0 420 480"
                 className="w-full drop-shadow-2xl"
@@ -98,7 +122,6 @@ export function Hero() {
                     <path d="M330,90 C375,145 395,210 378,280 C361,350 305,408 232,424 C159,440 88,412 52,348 C16,284 28,188 65,116 C102,44 178,0 252,8 C326,16 285,35 330,90Z" />
                   </clipPath>
                 </defs>
-                {/* Blob color layer */}
                 <path
                   d="M330,90 C375,145 395,210 378,280 C361,350 305,408 232,424 C159,440 88,412 52,348 C16,284 28,188 65,116 C102,44 178,0 252,8 C326,16 285,35 330,90Z"
                   fill="#4F6D7A"
@@ -119,7 +142,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Bottom fade transition */}
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white/5 to-transparent pointer-events-none" />
     </section>
   );

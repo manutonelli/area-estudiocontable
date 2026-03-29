@@ -69,10 +69,10 @@ export function Header() {
           <nav className="hidden md:flex items-center gap-10">
             <button
               type="button"
-              onClick={() => scrollToSection("quienes-somos")}
+              onClick={() => scrollToSection("como-trabajamos")}
               className={`text-sm transition-colors duration-300 hover:opacity-60 ${navMuted}`}
             >
-              Quiénes somos
+              Método
             </button>
             <button
               type="button"
@@ -81,19 +81,19 @@ export function Header() {
             >
               Servicios
             </button>
+            <button
+              type="button"
+              onClick={() => scrollToSection("quienes-somos")}
+              className={`text-sm transition-colors duration-300 hover:opacity-60 ${navMuted}`}
+            >
+              Nosotros
+            </button>
             <Link
               to="/recursos-gratuitos"
               className={`text-sm transition-colors duration-300 hover:opacity-60 ${navMuted}`}
             >
               Recursos
             </Link>
-            <button
-              type="button"
-              onClick={() => scrollToSection("faq")}
-              className={`text-sm transition-colors duration-300 hover:opacity-60 ${navMuted}`}
-            >
-              FAQ
-            </button>
             <motion.button
               type="button"
               onClick={() => scrollToSection("contacto")}
@@ -137,10 +137,10 @@ export function Header() {
               <div className="bg-white rounded-2xl shadow-xl p-6 mb-4 space-y-4">
                 <button
                   type="button"
-                  onClick={() => scrollToSection("quienes-somos")}
+                  onClick={() => scrollToSection("como-trabajamos")}
                   className="block w-full text-left py-2 text-[#2E3A4D] text-sm"
                 >
-                  Quiénes somos
+                  Método
                 </button>
                 <button
                   type="button"
@@ -149,6 +149,13 @@ export function Header() {
                 >
                   Servicios
                 </button>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection("quienes-somos")}
+                  className="block w-full text-left py-2 text-[#2E3A4D] text-sm"
+                >
+                  Nosotros
+                </button>
                 <Link
                   to="/recursos-gratuitos"
                   onClick={closeMobile}
@@ -156,13 +163,6 @@ export function Header() {
                 >
                   Recursos
                 </Link>
-                <button
-                  type="button"
-                  onClick={() => scrollToSection("faq")}
-                  className="block w-full text-left py-2 text-[#2E3A4D] text-sm"
-                >
-                  FAQ
-                </button>
                 <button
                   type="button"
                   onClick={() => scrollToSection("contacto")}

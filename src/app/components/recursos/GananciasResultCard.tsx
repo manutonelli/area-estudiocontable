@@ -82,13 +82,13 @@ export function GananciasResultCard({
       <div className="rounded-xl border border-[#63868A]/25 bg-white/60 px-5 py-4 mb-6">
         {bajoImpacto ? (
           <p className="text-[#3D5466] leading-relaxed">
-            Con los datos ingresados, no se observa un impacto estimado relevante en
-            Ganancias. Igualmente, conviene revisarlo con un contador si tu situación
-            cambió o tenés dudas sobre lo que te retienen.
+            Según el ingreso informado, no correspondería retención estimada de Impuesto a las
+            Ganancias. El ingreso bruto proyectado no supera el umbral de deducción
+            aplicable para tu situación.
           </p>
         ) : (
           <p className="text-[#3D5466] leading-relaxed">
-            Con los datos ingresados, podrías tener un descuento estimado de Ganancias
+            Con los datos ingresados, podrías tener una retención estimada de Ganancias
             en el orden indicado. Es una referencia: el monto real depende de tu
             recibo, deducciones efectivas y la normativa vigente.
           </p>

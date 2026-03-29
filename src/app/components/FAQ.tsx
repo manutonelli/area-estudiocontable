@@ -10,32 +10,32 @@ const faqs = [
   {
     question: "¿Tengo que pagar Ganancias?",
     answer:
-      "Depende de tu situación. Si estás en relación de dependencia, pagás si tus ingresos brutos superan cierto monto (que se actualiza cada año). También hay deducciones que podés hacer: por hijo, cónyuge, alquiler, cuota médica, entre otras. Te ayudamos a calcular si deberías pagar o si te corresponde una devolución.",
+      "Depende de tu situación. Si estás en relación de dependencia, pagás si tus ingresos brutos superan el umbral vigente. También hay deducciones aplicables: por hijo, cónyuge, alquiler, cuota médica, entre otras. Analizamos tu caso para saber si correspondería retención o si podés reducirla.",
   },
   {
-    question: "¿Qué pasa si cobro en USD?",
+    question: "¿Cómo sé si estoy bien categorizado en el monotributo?",
     answer:
-      "Si cobrás en dólares, hay distintas formas de liquidar esos ingresos según tu situación: monotributo con factura E, régimen simplificado, o Responsable Inscripto. Te orientamos sobre cuál es la mejor opción para vos según tu volumen de facturación y tus objetivos.",
+      "Revisamos tu facturación de los últimos 12 meses y verificamos que estés en la categoría correcta. Si estás por pasarte de categoría o podés bajar, te avisamos con tiempo. También acompañamos la recategorización semestral para evitar sorpresas.",
   },
   {
-    question: "¿Cómo sé si estoy bien en el monotributo?",
+    question: "¿Qué incluye el seguimiento mensual?",
     answer:
-      "Revisamos tu facturación de los últimos 12 meses y verificamos que estés en la categoría correcta. Si estás por pasarte de categoría o si podés bajar, te avisamos. También te ayudamos con la recategorización semestral para que no tengas sorpresas.",
+      "Control de ingresos, gastos e impuestos, proyección de vencimientos, alertas ante cambios en tu situación fiscal y asesoramiento continuo. No te enterás de los problemas cuando ya pasaron — te anticipamos.",
   },
   {
     question: "¿Qué pasa si no presento algo a tiempo?",
     answer:
-      "Hay multas y recargos por presentaciones fuera de término. Lo ideal es evitarlo, pero si ya pasó, te ayudamos a regularizar la situación lo antes posible para minimizar los costos. También te enviamos recordatorios para que no te pase de nuevo.",
+      "Hay multas y recargos por presentaciones fuera de término. Lo ideal es evitarlo, pero si ya ocurrió, analizamos la situación para regularizarla y minimizar los costos.",
   },
   {
-    question: "¿Cuánto sale trabajar con ustedes?",
+    question: "¿Trabajan con autónomos y PYMES?",
     answer:
-      "Depende del servicio que necesites. Trabajamos con honorarios mensuales para monotributistas y freelancers, y por servicio para trámites puntuales (como alta, declaración de Ganancias, etc.). Contanos tu situación y te pasamos un presupuesto sin compromiso.",
+      "Sí. Trabajamos con monotributistas, autónomos, emprendedores, comercios y PYMES. También hacemos certificaciones contables y balances. Cada cliente tiene una estrategia adaptada a su realidad.",
   },
   {
-    question: "¿Responden rápido?",
+    question: "¿Cómo arrancamos?",
     answer:
-      "Sí. Usamos WhatsApp como canal principal porque sabemos que necesitás respuestas ágiles. En general respondemos el mismo día (horario hábil). Para consultas más complejas que requieran análisis, te avisamos cuándo vas a tener la respuesta.",
+      "Con una reunión de diagnóstico inicial. Analizamos tu situación, detectamos riesgos u oportunidades, y te explicamos cómo podemos trabajar juntos. Escribinos por WhatsApp o completá el formulario de contacto.",
   },
 ];
 
@@ -52,14 +52,14 @@ export function FAQ() {
             viewport={{ once: true }}
             className="md:sticky md:top-32"
           >
-            <span className="text-[#4F6D7A] text-xs uppercase tracking-[0.22em] mb-6 block">
+            <span className="text-[#63868A] text-xs uppercase tracking-[0.22em] mb-6 block">
               Preguntas frecuentes
             </span>
-            <h2 className="text-[clamp(2rem,3.5vw,2.8rem)] font-bold text-[#2E3A4D] leading-[1.15]">
+            <h2 className="text-[clamp(2rem,3.5vw,2.8rem)] font-bold text-[#282F3F] leading-[1.15]">
               Las dudas que siempre aparecen.
             </h2>
-            <p className="text-[#4F6D7A] mt-5 leading-relaxed text-base">
-              Y sus respuestas claras, sin vueltas.
+            <p className="text-[#3D5466] mt-5 leading-relaxed text-base">
+              Respuestas claras, sin vueltas.
             </p>
           </motion.div>
 
@@ -77,10 +77,10 @@ export function FAQ() {
                   value={`item-${index}`}
                   className="bg-white border-none rounded-2xl px-7 data-[state=open]:shadow-md transition-all duration-200"
                 >
-                  <AccordionTrigger className="text-left text-base font-semibold text-[#2E3A4D] hover:no-underline py-6 leading-snug">
+                  <AccordionTrigger className="text-left text-base font-semibold text-[#282F3F] hover:no-underline py-6 leading-snug">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-[#4F6D7A] pb-7 leading-relaxed text-base">
+                  <AccordionContent className="text-[#3D5466] pb-7 leading-relaxed text-base">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>

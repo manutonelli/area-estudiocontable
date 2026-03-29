@@ -1,8 +1,12 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router";
 import { Hero } from "../components/Hero";
-import { About } from "../components/About";
+import { ProblemaCliente } from "../components/ProblemaCliente";
+import { PropuestaArea } from "../components/PropuestaArea";
+import { MetodoArea } from "../components/MetodoArea";
 import { Midpoint } from "../components/Midpoint";
+import { PublicoObjetivo } from "../components/PublicoObjetivo";
+import { About } from "../components/About";
 import { FAQ } from "../components/FAQ";
 import { FinalCTA } from "../components/FinalCTA";
 
@@ -22,8 +26,12 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <About />
+      <ProblemaCliente />
+      <PropuestaArea />
+      <MetodoArea />
       <Midpoint />
+      <PublicoObjetivo />
+      <About />
       <FAQ />
       <FinalCTA />
     </>
