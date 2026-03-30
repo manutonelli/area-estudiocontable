@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { motion } from "motion/react";
 import { Link } from "react-router";
-import { MonotributoCalculator } from "../components/recursos/MonotributoCalculator";
-import { GananciasCalculator } from "../components/recursos/GananciasCalculator";
 import { UpcomingResources } from "../components/recursos/UpcomingResources";
+import { ArrowRight } from "lucide-react";
 
 const PAGE_TITLE =
   "Recursos gratuitos — Monotributo y Ganancias | AREA Estudio Contable";
@@ -68,18 +67,18 @@ export default function ResourcesPage() {
               forma clara y práctica.
             </p>
             <div className="flex flex-wrap gap-3">
-              <a
-                href="#calculadora-monotributo"
+              <Link
+                to="/recursos-gratuitos/monotributo"
                 className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-white text-[#282F3F] text-sm font-semibold hover:bg-[#C7C1CB]/30 transition-colors"
               >
                 Calculadora Monotributo
-              </a>
-              <a
-                href="#calculadora-ganancias"
+              </Link>
+              <Link
+                to="/recursos-gratuitos/ganancias"
                 className="inline-flex items-center justify-center px-8 py-3.5 rounded-full border border-white/35 text-white text-sm font-semibold hover:bg-white/10 transition-colors"
               >
                 Calculadora Ganancias
-              </a>
+              </Link>
             </div>
             <p className="mt-8">
               <Link
@@ -95,8 +94,38 @@ export default function ResourcesPage() {
 
       <section className="py-16 md:py-24 bg-white">
         <div className="mx-auto max-w-7xl px-8 md:px-16">
-          <MonotributoCalculator />
-          <GananciasCalculator />
+          <p className="text-xs uppercase tracking-[0.2em] text-[#63868A] mb-8">Herramientas disponibles</p>
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
+            <Link
+              to="/recursos-gratuitos/monotributo"
+              className="group rounded-2xl border border-[#C7C1CB]/40 bg-white p-8 hover:shadow-lg hover:border-[#282F3F]/20 transition-all"
+            >
+              <h2 className="text-xl font-bold text-[#282F3F] mb-2 group-hover:text-[#63868A] transition-colors">
+                Calculadora de Monotributo
+              </h2>
+              <p className="text-sm text-[#3D5466] leading-relaxed mb-6">
+                Estimá tu categoría según tus ingresos anuales y tipo de actividad.
+              </p>
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[#282F3F] group-hover:gap-3 transition-all">
+                Ir a la calculadora <ArrowRight className="w-4 h-4" />
+              </span>
+            </Link>
+
+            <Link
+              to="/recursos-gratuitos/ganancias"
+              className="group rounded-2xl border border-[#C7C1CB]/40 bg-white p-8 hover:shadow-lg hover:border-[#282F3F]/20 transition-all"
+            >
+              <h2 className="text-xl font-bold text-[#282F3F] mb-2 group-hover:text-[#63868A] transition-colors">
+                Calculadora de Ganancias
+              </h2>
+              <p className="text-sm text-[#3D5466] leading-relaxed mb-6">
+                Estimá tu retención mensual y sueldo neto de bolsillo en relación de dependencia.
+              </p>
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[#282F3F] group-hover:gap-3 transition-all">
+                Ir a la calculadora <ArrowRight className="w-4 h-4" />
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
 

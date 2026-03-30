@@ -60,7 +60,7 @@ export function Header() {
             <img
               src={logoArea}
               alt="AREA Estudio Contable"
-              className={`h-14 w-auto sm:h-16 md:h-[4.5rem] object-contain object-left transition-[filter] duration-300 ${
+              className={`h-16 w-auto sm:h-20 md:h-24 object-contain object-left transition-[filter] duration-300 ${
                 isScrolled ? "brightness-0" : ""
               }`}
             />

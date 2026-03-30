@@ -32,11 +32,6 @@ const faqs = [
     answer:
       "Sí. Trabajamos con monotributistas, autónomos, emprendedores, comercios y PYMES. También hacemos certificaciones contables y balances. Cada cliente tiene una estrategia adaptada a su realidad.",
   },
-  {
-    question: "¿Cómo arrancamos?",
-    answer:
-      "Con una reunión de diagnóstico inicial. Analizamos tu situación, detectamos riesgos u oportunidades, y te explicamos cómo podemos trabajar juntos. Escribinos por WhatsApp o completá el formulario de contacto.",
-  },
 ];
 
 export function FAQ() {

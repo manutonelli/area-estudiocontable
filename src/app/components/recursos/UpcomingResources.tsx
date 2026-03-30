@@ -1,7 +1,6 @@
 import { Sparkles } from "lucide-react";
 
 const PLACEHOLDERS = [
-  "Calculadora de Ganancias",
   "¿Estoy pagando de más?",
   "Recursos para freelancers que cobran en USD",
 ];

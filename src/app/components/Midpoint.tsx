@@ -6,16 +6,12 @@ const servicios = [
     items: ["Alta e inscripción", "Recategorización", "Seguimiento", "Control y asesoramiento"],
   },
   {
-    categoria: "Emprendedores",
-    items: ["Impuestos", "Planificación", "Control mensual", "Asesoramiento"],
+    categoria: "Responsables inscriptos",
+    items: ["Liquidación de IVA", "Ganancias", "Anticipos", "Proyección fiscal"],
   },
   {
-    categoria: "Autónomos",
-    items: ["Ganancias", "Anticipos", "Proyección fiscal", "Estrategia"],
-  },
-  {
-    categoria: "PYMES",
-    items: ["Impuestos", "Planificación", "Análisis", "Seguimiento", "Decisiones estratégicas"],
+    categoria: "Sociedades",
+    items: ["Administración contable", "Liquidación impositiva", "Balances", "Asesoramiento"],
   },
   {
     categoria: "Certificaciones",
@@ -72,7 +68,7 @@ export function Midpoint() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-0">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-0">
           {servicios.map((servicio, i) => (
             <motion.div
               key={i}

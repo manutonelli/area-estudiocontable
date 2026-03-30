@@ -11,10 +11,28 @@ export function FinalCTA() {
     consulta: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("¡Mensaje enviado! Te contactamos pronto.");
-    setFormData({ nombre: "", email: "", consulta: "" });
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("https://formspree.io/f/xreoqkng", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (res.ok) {
+        toast.success("¡Mensaje enviado! Te contactamos pronto.");
+        setFormData({ nombre: "", email: "", consulta: "" });
+      } else {
+        toast.error("Hubo un error. Intentá de nuevo o escribinos por WhatsApp.");
+      }
+    } catch {
+      toast.error("Hubo un error. Intentá de nuevo o escribinos por WhatsApp.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -105,45 +123,61 @@ export function FinalCTA() {
                 className="w-full inline-flex items-center justify-center gap-2 bg-[#63868A] text-white px-6 py-3.5 rounded-xl font-semibold hover:bg-[#4F6D7A] transition-colors"
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
+                disabled={isSubmitting}
               >
-                Agendar reunión
+                {isSubmitting ? "Enviando..." : "Agendar reunión"}
                 <Send className="w-4 h-4" />
               </motion.button>
             </form>
           </motion.div>
 
+          {/* Columna derecha: texto + mapa */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9 }}
             viewport={{ once: true }}
-            className="order-1 md:order-2 md:text-right max-w-2xl md:ml-auto"
+            className="order-1 md:order-2 md:text-right max-w-2xl md:ml-auto flex flex-col gap-6"
           >
-            <span className="text-[#63868A] text-xs uppercase tracking-[0.22em] mb-8 block">
-              Contacto
-            </span>
+            <div>
+              <span className="text-[#63868A] text-xs uppercase tracking-[0.22em] mb-4 block">
+                Contacto
+              </span>
 
-            <h2 className="text-[clamp(2.2rem,4.5vw,3.8rem)] font-bold text-white leading-[1.1] mb-8">
-              Empezá a trabajar{" "}
-              <span className="text-[#63868A]">con tranquilidad.</span>
-            </h2>
+              <h2 className="text-[clamp(1.8rem,3.5vw,2.8rem)] font-bold text-white leading-[1.1] mb-4">
+                Empezá a trabajar{" "}
+                <span className="text-[#63868A]">con tranquilidad.</span>
+              </h2>
 
-            <p className="text-[#F4F4F4]/50 text-lg mb-12 leading-relaxed">
-              Primera consulta sin compromiso. Te escuchamos y analizamos tu
-              situación.
-            </p>
+              <p className="text-[#F4F4F4]/50 text-base mb-6 leading-relaxed">
+                Primera consulta sin compromiso. Te escuchamos y analizamos tu situación.
+              </p>
 
-            <div className="flex flex-col md:flex-row gap-5 md:justify-end items-start md:items-center">
-              <motion.a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 bg-white text-[#2E3A4D] px-8 py-4 rounded-full font-semibold text-base hover:bg-[#F4F4F4] transition-all shadow-lg"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                Escribir por WhatsApp
-              </motion.a>
+              <div className="flex md:justify-end">
+                <motion.a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 bg-white text-[#2E3A4D] px-8 py-4 rounded-full font-semibold text-base hover:bg-[#F4F4F4] transition-all shadow-lg"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  Escribir por WhatsApp
+                </motion.a>
+              </div>
+            </div>
+
+            <div className="rounded-2xl overflow-hidden w-full">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3242.376372839866!2d-59.7845169240784!3d-35.643097613131566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzXCsDM4JzM1LjIiUyA1OcKwNDYnNTUuMCJX!5e0!3m2!1ses!2sar!4v1774878280712!5m2!1ses!2sar"
+                width="100%"
+                height="160"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Ubicación AREA Estudio Contable"
+              />
             </div>
           </motion.div>
         </div>
