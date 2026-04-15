@@ -54,7 +54,7 @@ export function MetodoArea() {
             >
               {/* Connector line */}
               {i < pasos.length - 1 && (
-                <div className="hidden md:block absolute top-6 left-full w-full h-px bg-[#C7C1CB]/40 z-0" />
+                <div className="hidden md:block absolute top-6 left-12 right-0 h-px bg-[#C7C1CB]/40 z-0" style={{ left: "3rem" }} />
               )}
               <div className="relative z-10">
                 <div className="w-12 h-12 rounded-full border-2 border-[#63868A]/40 flex items-center justify-center mb-6">
