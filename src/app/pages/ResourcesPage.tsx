@@ -77,7 +77,7 @@ export default function ResourcesPage() {
                 to="/recursos-gratuitos/ganancias"
                 className="inline-flex items-center justify-center px-8 py-3.5 rounded-full border border-white/35 text-white text-sm font-semibold hover:bg-white/10 transition-colors"
               >
-                Calculadora Ganancias
+                Ganancias — Relación de dependencia
               </Link>
             </div>
             <p className="mt-8">
@@ -116,7 +116,7 @@ export default function ResourcesPage() {
               className="group rounded-2xl border border-[#C7C1CB]/40 bg-white p-8 hover:shadow-lg hover:border-[#282F3F]/20 transition-all"
             >
               <h2 className="text-xl font-bold text-[#282F3F] mb-2 group-hover:text-[#63868A] transition-colors">
-                Calculadora de Ganancias
+                Impuesto a las Ganancias — Relación de dependencia
               </h2>
               <p className="text-sm text-[#3D5466] leading-relaxed mb-6">
                 Estimá tu retención mensual y sueldo neto de bolsillo en relación de dependencia.
