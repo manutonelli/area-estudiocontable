@@ -8,14 +8,34 @@ import {
 
 const faqs = [
   {
-    question: "¿Tengo que pagar Ganancias?",
+    question: "¿Qué pasa si empiezo a trabajar y no me inscribo?",
     answer:
-      "Depende de tu situación. Si estás en relación de dependencia, pagás si tus ingresos brutos superan el umbral vigente. También hay deducciones aplicables: por hijo, cónyuge, alquiler, cuota médica, entre otras. Analizamos tu caso para saber si correspondería retención o si podés reducirla.",
+      "Podés tener problemas a futuro: multas, deudas o bloqueos. Siempre es mejor empezar en regla desde el primer ingreso.",
   },
   {
-    question: "¿Cómo sé si estoy bien categorizado en el monotributo?",
+    question: "¿Tengo que hacer facturas sí o sí?",
     answer:
-      "Revisamos tu facturación de los últimos 12 meses y verificamos que estés en la categoría correcta. Si estás por pasarte de categoría o podés bajar, te avisamos con tiempo. También acompañamos la recategorización semestral para evitar sorpresas.",
+      "Sí. Cada ingreso que tengas tiene que estar respaldado con una factura.",
+  },
+  {
+    question: "¿Puedo tener monotributo y trabajar en relación de dependencia?",
+    answer:
+      "Sí, podés tener ambos al mismo tiempo. Es bastante común.",
+  },
+  {
+    question: "¿Qué gastos puedo descontar?",
+    answer:
+      "Depende del tipo de actividad. No todo gasto es deducible, por eso es importante analizar cada caso.",
+  },
+  {
+    question: "¿Necesito contador o lo puedo hacer solo?",
+    answer:
+      "Podés hacerlo solo, pero tener asesoramiento te evita errores, multas y te ayuda a pagar lo justo.",
+  },
+  {
+    question: "¿Qué pasa si nunca hice nada y quiero regularizar?",
+    answer:
+      "Se puede ordenar. Cuanto antes lo hagas, mejor, porque se pueden reducir problemas y costos.",
   },
   {
     question: "¿Qué incluye el seguimiento mensual?",
@@ -26,11 +46,6 @@ const faqs = [
     question: "¿Qué pasa si no presento algo a tiempo?",
     answer:
       "Hay multas y recargos por presentaciones fuera de término. Lo ideal es evitarlo, pero si ya ocurrió, analizamos la situación para regularizarla y minimizar los costos.",
-  },
-  {
-    question: "¿Trabajan con autónomos y PYMES?",
-    answer:
-      "Sí. Trabajamos con monotributistas, autónomos, emprendedores, comercios y PYMES. También hacemos certificaciones contables y balances. Cada cliente tiene una estrategia adaptada a su realidad.",
   },
 ];
 
