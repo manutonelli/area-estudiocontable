@@ -32,9 +32,9 @@ export function About() {
               Quién está detrás de Área
             </span>
             <h2 className="text-[clamp(2rem,4vw,3.2rem)] font-bold text-[#282F3F] leading-[1.1] mb-8">
-              Camila Tonelli
-              <br />
               Antonella Ninni
+              <br />
+              Camila Tonelli
               <br />
               <span className="text-[#63868A] font-normal text-[clamp(1.2rem,2.5vw,1.6rem)]">
                 Contadoras públicas
@@ -42,7 +42,7 @@ export function About() {
             </h2>
             <div className="space-y-5 text-[#3D5466] text-lg leading-relaxed max-w-md">
               <p>
-                Área nace con una idea clara: los impuestos no deberían ser un
+                AREA nace con una idea clara: los impuestos no deberían ser un
                 problema. Deberían ser una herramienta de decisión.
               </p>
               <p>
