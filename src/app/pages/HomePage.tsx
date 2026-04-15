@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useLocation } from "react-router";
 import { Hero } from "../components/Hero";
 import { ProblemaCliente } from "../components/ProblemaCliente";
-import { PropuestaArea } from "../components/PropuestaArea";
 import { MetodoArea } from "../components/MetodoArea";
 import { Midpoint } from "../components/Midpoint";
 import { About } from "../components/About";
@@ -26,7 +25,6 @@ export default function HomePage() {
     <>
       <Hero />
       <ProblemaCliente />
-      <PropuestaArea />
       <MetodoArea />
       <Midpoint />
       <About />
