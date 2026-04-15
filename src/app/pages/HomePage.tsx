@@ -12,6 +12,10 @@ export default function HomePage() {
   const location = useLocation();
 
   useEffect(() => {
+    document.title = "AREA — Estudio Contable";
+  }, []);
+
+  useEffect(() => {
     const hash = location.hash.replace(/^#/, "");
     if (!hash) return;
     const id = decodeURIComponent(hash);
