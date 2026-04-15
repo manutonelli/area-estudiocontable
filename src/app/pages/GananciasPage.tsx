@@ -6,7 +6,7 @@ import { PERIODO_VIGENTE } from "@/config/gananciasCalculadora";
 
 export default function GananciasPage() {
   useEffect(() => {
-    document.title = "Calculadora de Ganancias | AREA Estudio Contable";
+    document.title = "Impuesto a las Ganancias - Relación de dependencia | AREA Estudio Contable";
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {
       meta = document.createElement("meta");
@@ -28,7 +28,7 @@ export default function GananciasPage() {
           >
             <p className="text-[#63868A] text-xs uppercase tracking-[0.22em] mb-4">Recurso gratuito</p>
             <h1 className="text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.1] mb-4">
-              Calculadora de Ganancias
+              Impuesto a las Ganancias — Relación de dependencia
             </h1>
             <p className="text-[#C7C1CB] text-lg leading-relaxed mb-2">
               Estimá tu retención mensual y sueldo neto de bolsillo.
