@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import ResourcesPage from "./pages/ResourcesPage";
 import MonotributoPage from "./pages/MonotributoPage";
 import GananciasPage from "./pages/GananciasPage";
+import CuotasPage from "./pages/CuotasPage";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/recursos-gratuitos" element={<ResourcesPage />} />
           <Route path="/recursos-gratuitos/monotributo" element={<MonotributoPage />} />
           <Route path="/recursos-gratuitos/ganancias" element={<GananciasPage />} />
+          <Route path="/cuotas" element={<CuotasPage />} />
         </Route>
       </Routes>
       <Toaster />
