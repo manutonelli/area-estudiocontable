@@ -18,8 +18,8 @@ export default function App() {
           <Route path="/recursos-gratuitos" element={<ResourcesPage />} />
           <Route path="/recursos-gratuitos/monotributo" element={<MonotributoPage />} />
           <Route path="/recursos-gratuitos/ganancias" element={<GananciasPage />} />
-          <Route path="/cuotas" element={<CuotasPage />} />
         </Route>
+        <Route path="/cuotas" element={<CuotasPage />} />
       </Routes>
       <Toaster />
     </BrowserRouter>
