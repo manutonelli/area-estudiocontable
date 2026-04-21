@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Calculá tus cuotas — Área Estudio Contable</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,300&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #2d3447;
+    --bg2: #242938;
+    --teal: #5f8e8a;
+    --teal-light: #7ab0ab;
+    --teal-dark: #3d6b67;
+    --white: #ffffff;
+    --white-dim: rgba(255,255,255,0.65);
+    --white-faint: rgba(255,255,255,0.08);
+    --white-border: rgba(255,255,255,0.12);
+    --danger: #e05c5c;
+    --warning: #e8b44a;
+    --success: #5cbd7e;
+  }
+
+  html, body {
+    min-height: 100vh;
+    font-family: 'Raleway', sans-serif;
+    background: var(--bg2);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* BLOBS */
+  .blob-container {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .blob {
+    position: absolute; border-radius: 50%; background: var(--teal); opacity: 0.18;
+    animation: float 8s ease-in-out infinite;
+  }
+  .blob-1 { width: 500px; height: 500px; top: -180px; left: -180px; animation-delay: 0s; }
+  .blob-2 { width: 380px; height: 380px; bottom: -120px; left: -80px; opacity: 0.12; animation-delay: -3s; }
+  .blob-3 { width: 260px; height: 260px; top: 30%; right: -80px; opacity: 0.10; animation-delay: -5s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-20px) scale(1.03); }
+  }
+
+  /* LAYOUT */
+  .page {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 0 20px 60px;
+  }
+
+  /* HEADER */
+  header {
+    width: 100%; max-width: 560px;
+    padding: 36px 0 0;
+    text-align: center;
+  }
+  .logo {
+    font-size: 20px; font-weight: 700; letter-spacing: 5px; color: var(--white);
+    display: inline-flex; align-items: baseline; gap: 3px;
+  }
+  .logo-dash { font-size: 26px; font-weight: 300; }
+  .logo-sub {
+    display: block; font-size: 8px; font-weight: 400;
+    letter-spacing: 3.5px; color: var(--white-dim); margin-top: 3px; text-align: center;
+  }
+
+  .hero {
+    margin-top: 40px;
+    text-align: center;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 10px; font-weight: 600; letter-spacing: 3px;
+    color: var(--teal-light); text-transform: uppercase;
+    border: 1px solid var(--teal-dark);
+    padding: 5px 14px; border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(26px, 6vw, 38px);
+    font-weight: 700; line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 14px;
+  }
+  .hero p {
+    font-size: 15px; font-weight: 400;
+    color: var(--white-dim); line-height: 1.6;
+    max-width: 400px; margin: 0 auto;
+  }
+
+  /* CARD */
+  .card {
+    width: 100%; max-width: 520px;
+    margin-top: 40px;
+    background: var(--white-faint);
+    border: 1px solid var(--white-border);
+    border-radius: 20px;
+    padding: 36px 32px;
+    backdrop-filter: blur(8px);
+  }
+
+  /* FIELD */
+  .field { margin-bottom: 24px; }
+  .field label {
+    display: block;
+    font-size: 11px; font-weight: 600; letter-spacing: 2px;
+    color: var(--white-dim); text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .input-wrap {
+    display: flex; align-items: center;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--white-border);
+    border-radius: 12px;
+    padding: 0 18px;
+    transition: border-color 0.2s;
+  }
+  .input-wrap:focus-within {
+    border-color: var(--teal);
+  }
+  .input-prefix {
+    font-size: 16px; font-weight: 600; color: var(--teal-light);
+    margin-right: 8px; flex-shrink: 0;
+  }
+  .input-wrap input {
+    flex: 1;
+    background: transparent; border: none; outline: none;
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px; font-weight: 600;
+    color: var(--white);
+    padding: 16px 0;
+    width: 100%;
+  }
+  .input-wrap input::placeholder { color: rgba(255,255,255,0.2); font-weight: 400; }
+
+  /* ADD ROW */
+  .cuotas-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
+  .cuota-row {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .cuota-row .input-wrap { flex: 1; }
+  .cuota-row input { font-size: 16px; padding: 13px 0; }
+  .btn-remove {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,0.06); border: 1px solid var(--white-border);
+    color: var(--white-dim); font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: background 0.2s;
+    font-family: 'Raleway', sans-serif;
+  }
+  .btn-remove:hover { background: rgba(224,92,92,0.2); border-color: var(--danger); color: var(--danger); }
+
+  .btn-add {
+    background: none; border: 1px dashed var(--white-border);
+    border-radius: 10px; padding: 11px;
+    color: var(--white-dim); font-family: 'Raleway', sans-serif;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    width: 100%; transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .btn-add:hover { border-color: var(--teal); color: var(--teal-light); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px; background: var(--white-border);
+    margin: 28px 0;
+  }
+
+  /* RESULT */
+  .result-box {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--white-border);
+    border-radius: 16px; padding: 28px 24px;
+    text-align: center;
+    transition: all 0.4s;
+  }
+  .result-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 3px;
+    color: var(--white-dim); text-transform: uppercase; margin-bottom: 12px;
+  }
+  .result-pct {
+    font-size: clamp(52px, 14vw, 80px);
+    font-weight: 900; line-height: 1;
+    transition: color 0.4s;
+  }
+  .result-pct span { font-size: 0.45em; font-weight: 400; vertical-align: super; }
+  .result-sub {
+    font-size: 14px; color: var(--white-dim);
+    margin-top: 10px; line-height: 1.5;
+  }
+  .result-sub strong { color: var(--white); }
+
+  /* SEMÁFORO */
+  .semaforo {
+    display: flex; gap: 6px; justify-content: center;
+    margin-top: 18px;
+  }
+  .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    transition: background 0.4s;
+  }
+
+  /* MENSAJE */
+  .msg-box {
+    margin-top: 20px;
+    border-radius: 12px; padding: 16px 20px;
+    font-size: 14px; line-height: 1.5;
+    border: 1px solid transparent;
+    display: none;
+  }
+  .msg-box.visible { display: block; }
+  .msg-success { background: rgba(92,189,126,0.1); border-color: rgba(92,189,126,0.3); color: #7de0a3; }
+  .msg-warning { background: rgba(232,180,74,0.1); border-color: rgba(232,180,74,0.3); color: #f0c96a; }
+  .msg-danger  { background: rgba(224,92,92,0.1);  border-color: rgba(224,92,92,0.3);  color: #f08080; }
+
+  /* CTA */
+  .cta-box {
+    width: 100%; max-width: 520px;
+    margin-top: 24px;
+    background: var(--teal-dark);
+    border-radius: 16px; padding: 28px 32px;
+    text-align: center;
+  }
+  .cta-box p {
+    font-size: 15px; font-weight: 500; color: var(--white);
+    line-height: 1.5; margin-bottom: 18px;
+  }
+  .btn-cta {
+    display: inline-block;
+    background: var(--white); color: var(--teal-dark);
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px; font-weight: 700; letter-spacing: 1px;
+    padding: 14px 32px; border-radius: 30px;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .btn-cta:hover { opacity: 0.85; }
+
+  /* FOOTER */
+  footer {
+    margin-top: 48px; text-align: center;
+    font-size: 12px; color: rgba(255,255,255,0.25);
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<div class="blob-container">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<div class="page">
+
+  <header>
+    <div class="logo">
+      <span class="logo-dash">—</span>ÁREA
+    </div>
+    <span class="logo-sub">ESTUDIO CONTABLE</span>
+
+    <div class="hero">
+      <div class="hero-tag">Herramienta gratuita</div>
+      <h1>Calculá cuánto de tu sueldo se va en cuotas</h1>
+      <p>En 2 minutos sabés si tu deuda es manejable o si ya es hora de ordenarte.</p>
+    </div>
+  </header>
+
+  <div class="card">
+
+    <!-- SUELDO -->
+    <div class="field">
+      <label>Sueldo neto mensual</label>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="sueldo" placeholder="350.000" min="0" oninput="calcular()"/>
+      </div>
+    </div>
+
+    <!-- CUOTAS -->
+    <div class="field">
+      <label>Cuotas fijas (créditos, préstamos, etc.)</label>
+      <div class="cuotas-list" id="cuotas-list">
+        <div class="cuota-row" data-id="1">
+          <div class="input-wrap">
+            <span class="input-prefix">$</span>
+            <input type="number" placeholder="Ej: cuota auto 80.000" min="0" oninput="calcular()"/>
+          </div>
+          <button class="btn-remove" onclick="removeRow(this)" title="Eliminar">×</button>
+        </div>
+      </div>
+      <button class="btn-add" onclick="addRow()">+ Agregar otra cuota</button>
+    </div>
+
+    <!-- TARJETA -->
+    <div class="field" style="margin-bottom:0;">
+      <label>Resumen de tarjeta (mes actual)</label>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="tarjeta" placeholder="120.000" min="0" oninput="calcular()"/>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- RESULTADO -->
+    <div class="result-box" id="result-box">
+      <div class="result-label">Comprometido de tu sueldo</div>
+      <div class="result-pct" id="result-pct" style="color: var(--white-dim);">
+        <span>%</span>0
+      </div>
+      <div class="result-sub" id="result-sub">
+        Completá los campos para ver tu resultado.
+      </div>
+      <div class="semaforo" id="semaforo">
+        <div class="dot" id="d1"></div>
+        <div class="dot" id="d2"></div>
+        <div class="dot" id="d3"></div>
+        <div class="dot" id="d4"></div>
+        <div class="dot" id="d5"></div>
+      </div>
+    </div>
+
+    <div class="msg-box" id="msg-box"></div>
+
+  </div>
+
+  <div class="cta-box" id="cta-box" style="display:none;">
+    <p id="cta-text">¿Querés ordenar tus finanzas con ayuda profesional? En Área te acompañamos.</p>
+    <a class="btn-cta" href="https://wa.me/5492284XXXXXX?text=Hola!%20Calculé%20mis%20cuotas%20y%20quiero%20ordenarme." target="_blank">Escribinos por WhatsApp</a>
+  </div>
+
+  <footer>
+    © Área Estudio Contable — areaestudiocontable.com.ar
+  </footer>
+
+</div>
+
+<script>
+  function addRow() {
+    const list = document.getElementById('cuotas-list');
+    const row = document.createElement('div');
+    row.className = 'cuota-row';
+    row.innerHTML = `
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" placeholder="Monto de la cuota" min="0" oninput="calcular()"/>
+      </div>
+      <button class="btn-remove" onclick="removeRow(this)" title="Eliminar">×</button>
+    `;
+    list.appendChild(row);
+    row.querySelector('input').focus();
+  }
+
+  function removeRow(btn) {
+    const rows = document.querySelectorAll('.cuota-row');
+    if (rows.length === 1) return;
+    btn.closest('.cuota-row').remove();
+    calcular();
+  }
+
+  function calcular() {
+    const sueldo = parseFloat(document.getElementById('sueldo').value) || 0;
+    const tarjeta = parseFloat(document.getElementById('tarjeta').value) || 0;
+    let totalCuotas = 0;
+    document.querySelectorAll('.cuota-row input').forEach(i => {
+      totalCuotas += parseFloat(i.value) || 0;
+    });
+
+    const total = totalCuotas + tarjeta;
+    const pct = sueldo > 0 ? Math.round((total / sueldo) * 100) : 0;
+
+    const pctEl = document.getElementById('result-pct');
+    const subEl = document.getElementById('result-sub');
+    const msgEl = document.getElementById('msg-box');
+    const ctaBox = document.getElementById('cta-box');
+    const ctaText = document.getElementById('cta-text');
+    const dots = document.querySelectorAll('.dot');
+
+    if (sueldo === 0) {
+      pctEl.style.color = 'var(--white-dim)';
+      pctEl.innerHTML = '<span>%</span>0';
+      subEl.innerHTML = 'Completá los campos para ver tu resultado.';
+      msgEl.className = 'msg-box';
+      ctaBox.style.display = 'none';
+      dots.forEach(d => d.style.background = 'rgba(255,255,255,0.15)');
+      return;
+    }
+
+    pctEl.innerHTML = `<span>%</span>${pct}`;
+
+    const totalFmt = '$' + total.toLocaleString('es-AR');
+    const sueldoFmt = '$' + sueldo.toLocaleString('es-AR');
+    subEl.innerHTML = `De <strong>${sueldoFmt}</strong> de sueldo, <strong>${totalFmt}</strong> ya están comprometidos.`;
+
+    // Color y semáforo
+    dots.forEach(d => d.style.background = 'rgba(255,255,255,0.15)');
+    let color, activeDots, msgClass, msgText, ctaTxt;
+
+    if (pct <= 20) {
+      color = 'var(--success)'; activeDots = 1; msgClass = 'msg-success';
+      msgText = '🎉 Excelente. Tu nivel de deuda es muy saludable. Tenés margen para ahorrar o invertir.';
+      ctaTxt = '¿Querés que te ayudemos a aprovechar ese margen? En Área te asesoramos.';
+    } else if (pct <= 35) {
+      color = '#7de0a3'; activeDots = 2; msgClass = 'msg-success';
+      msgText = '✅ Bien manejado. Estás dentro de un rango razonable, pero ojo con sumar más cuotas.';
+      ctaTxt = '¿Querés revisar si podés optimizar alguna cuota? Te ayudamos a analizarlo.';
+    } else if (pct <= 50) {
+      color = 'var(--warning)'; activeDots = 3; msgClass = 'msg-warning';
+      msgText = '⚠️ Zona de atención. Más de un tercio de tu sueldo ya está comprometido. Es momento de revisar.';
+      ctaTxt = 'Más del 35% de tu sueldo comprometido es una señal. En Área te ayudamos a ordenarlo.';
+    } else if (pct <= 70) {
+      color = '#e89a4a'; activeDots = 4; msgClass = 'msg-warning';
+      msgText = '🚨 Zona de riesgo. Más de la mitad de tu sueldo se va en deudas. Esto limita mucho tu margen.';
+      ctaTxt = 'Esto tiene solución, pero hay que actuar. Escribinos y lo vemos juntos.';
+    } else {
+      color = 'var(--danger)'; activeDots = 5; msgClass = 'msg-danger';
+      msgText = '🔴 Nivel crítico. Tu deuda supera el 70% de tu sueldo. Es urgente reorganizar las prioridades.';
+      ctaTxt = 'Nivel crítico de deuda. No lo dejés pasar, escribinos hoy y buscamos una salida.';
+    }
+
+    pctEl.style.color = color;
+    for (let i = 0; i < activeDots; i++) {
+      dots[i].style.background = color;
+    }
+
+    msgEl.className = `msg-box visible ${msgClass}`;
+    msgEl.textContent = msgText;
+
+    ctaBox.style.display = 'block';
+    ctaText.textContent = ctaTxt;
+  }
+</script>
+</body>
+</html>
