@@ -92,13 +92,9 @@ export default function CuotasPage() {
       "", `TOTAL COMPROMETIDO: ${fmt(total)} (${pct}% del sueldo)`,
     ];
     const asunto = encodeURIComponent(`Consulta desde calculadora de cuotas — ${nombre}`);
-    const cuerpo = encodeURIComponent(`Hola, llegó una consulta desde la calculadora de cuotas:
-
-Nombre: ${nombre}
-Email: ${email}
-
-${lineas.join("
-")}`);
+    const cuerpo = encodeURIComponent(
+      `Hola, llegó una consulta desde la calculadora de cuotas:\n\nNombre: ${nombre}\nEmail: ${email}\n\n${lineas.join("\n")}`
+    );
     window.location.href = `mailto:area.estudiocontable@gmail.com?subject=${asunto}&body=${cuerpo}`;
     setEnviado(true);
   };
