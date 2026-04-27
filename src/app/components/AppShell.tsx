@@ -3,6 +3,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { motion } from "motion/react";
 import { WHATSAPP_URL } from "@/config/contact";
+import { ChatWidget } from "./ChatWidget";
 
 export function AppShell() {
   return (
@@ -31,6 +32,25 @@ export function AppShell() {
           <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.118 1.522 5.855L.057 23.082a.75.75 0 0 0 .92.918l5.228-1.474A11.955 11.955 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.712 9.712 0 0 1-4.953-1.354l-.355-.21-3.676 1.035 1.034-3.586-.228-.368A9.712 9.712 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
         </svg>
       </motion.a>
+      export function AppShell() {
+  return (
+    <div className="min-h-screen bg-white flex flex-col">
+      <Header />
+      <main className="flex-1 w-full">
+        <Outlet />
+      </main>
+      <Footer />
+
+      {/* WhatsApp floating button — ya existente */}
+      <motion.a href={WHATSAPP_URL} ...>
+        ...
+      </motion.a>
+
+      {/* 👇 Agregá esto */}
+      <ChatWidget />
+    </div>
+  );
+}
     </div>
   );
 }
